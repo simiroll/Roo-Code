@@ -1,12 +1,11 @@
 # Roo Code Changelog
 
-## 3.18.2
+## [3.18.2] - 2025-05-23
 
-### Patch Changes
-
-- Fix vscode-material-icons path
-- Fix OpenRouter names
+- Fix vscode-material-icons in the filer picker
 - Fix global settings export
+- Respect user-configured terminal integration timeout (thanks @KJ7LNW)
+- Contex condensing enhancements (thanks @SannidhyaSah)
 
 ## [3.18.1] - 2025-05-22
 
