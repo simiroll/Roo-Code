@@ -1,5 +1,16 @@
 # Roo Code Changelog
 
+## 3.18.3
+
+### Patch Changes
+
+- Fix reasoning budget for Gemini 2.5 Flash on OpenRouter
+- Convert bootstrap script to esm
+- Fix o1-pro on OpenRouter
+- Fix max tokens in task header
+- Preserve model settings when selecting a specific OpenRouter provider
+-   - Default to Claude Sonnet 4 model
+
 ## [3.18.2] - 2025-05-23
 
 - Fix vscode-material-icons in the filer picker
