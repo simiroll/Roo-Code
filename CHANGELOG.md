@@ -1,15 +1,13 @@
 # Roo Code Changelog
 
-## 3.19.0
+## [3.18.4] - 2025-05-25
 
-### Minor Changes
-
-- Update `xaiModels` and `xaiDefaultModelId` in `src/shared/api.ts`
-
-### Patch Changes
-
-- Add metadata to create message
--   - Fix settings saving logic to ensure the saved settings are used (thanks @daniel-lxs!)
+- Fix codebase indexing settings saving and Ollama indexing (thanks @daniel-lxs!)
+- Fix handling BOM when user rejects apply_diff (thanks @avtc!)
+- Fix wrongfully clearing input on auto-approve (thanks @Ruakij!)
+- Fix correct spawnSync parameters for pnpm check in bootstrap.mjs (thanks @ChuKhaLi!)
+- Update xAI models and default model ID (thanks @PeterDaveHello!)
+- Add metadata to create message (thanks @dtrugman!)
 
 ## [3.18.3] - 2025-05-24
 
