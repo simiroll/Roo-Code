@@ -1,5 +1,16 @@
 # Roo Code Changelog
 
+## 3.19.0
+
+### Minor Changes
+
+- Update `xaiModels` and `xaiDefaultModelId` in `src/shared/api.ts`
+
+### Patch Changes
+
+- Add metadata to create message
+-   - Fix settings saving logic to ensure the saved settings are used (thanks @daniel-lxs!)
+
 ## [3.18.3] - 2025-05-24
 
 - Add reasoning support for Claude 4 and Gemini 2.5 Flash on OpenRouter, plus a fix for o1-pro
