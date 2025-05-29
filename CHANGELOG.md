@@ -1,5 +1,21 @@
 # Roo Code Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- Default enabled autoCondenseContext and moved settings out of Experimental
+
+### Minor Changes
+
+-   - Enable intelligent content condensing by default and move condense button out of expanded task menu
+
+### Patch Changes
+
+- Appease changesets
+- Skips condense operations if the context size grows & shows an error
+- Roo Code Cloud
+
 ## [3.18.5] - 2025-05-27
 
 - Add thinking controls for Requesty (thanks @dtrugman!)
