@@ -1,5 +1,17 @@
 # Roo Code Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- Fixes bug with context condensing on Amazon Bedrock
+
+### Patch Changes
+
+- Add AWS Bedrock VPC endpoint support, allowing users to connect to Bedrock through private VPC endpoints. This includes UI configuration options, updated types, and comprehensive test coverage.
+- Correctly pass headers to SSE MCP
+-   - Experimental feature to allow reading multiple files at once (thanks @samhvw8!)
+
 ## [3.19.0] - 2025-05-30
 
 - Enable intelligent content condensing by default and move condense button out of expanded task menu
