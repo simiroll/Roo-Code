@@ -1,18 +1,17 @@
 # Roo Code Changelog
 
-## 4.0.0
+## [3.19.1] - 2025-05-30
 
-### Major Changes
+- Experimental feature to allow reading multiple files at once (thanks @samhvw8!)
+- Fix to correctly pass headers to SSE MCP servers
+- Adding support for custom VPC endpoints when using Amazon Bedrock (thanks @kcwhite!)
+- Fix bug with context condensing in Amazon Bedrock
+- Fix UTF-8 encoding in ExecaTerminalProcess (thanks @mr-ryan-james!)
+- Set sidebar name bugfix (thanks @chrarnoldus!)
+- Fix link to CONTRIBUTING.md in feature request template (thanks @cannuri!)
+- Add task metadata to Unbound and improve caching logic (thanks @pugazhendhi-m!)
 
-- Fixes bug with context condensing on Amazon Bedrock
-
-### Patch Changes
-
-- Add AWS Bedrock VPC endpoint support, allowing users to connect to Bedrock through private VPC endpoints. This includes UI configuration options, updated types, and comprehensive test coverage.
-- Correctly pass headers to SSE MCP
--   - Experimental feature to allow reading multiple files at once (thanks @samhvw8!)
-
-## [3.19.0] - 2025-05-30
+## [3.19.0] - 2025-05-29
 
 - Enable intelligent content condensing by default and move condense button out of expanded task menu
 - Skip condense and show error if context grows during condensing
