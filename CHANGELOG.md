@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.19.2
+
+### Patch Changes
+
+-   - Add support for Streamable HTTP Transport MCP servers (thanks @taylorwilsdon!)
+
 ## [3.19.1] - 2025-05-30
 
 - Experimental feature to allow reading multiple files at once (thanks @samhvw8!)
