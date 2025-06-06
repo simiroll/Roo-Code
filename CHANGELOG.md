@@ -1,8 +1,6 @@
 # Roo Code Changelog
 
-## 3.19.5
-
-### Patch Changes
+## [3.19.5] - 2025-06-05
 
 - Fix Gemini 2.5 Pro Preview thinking budget bug
 
