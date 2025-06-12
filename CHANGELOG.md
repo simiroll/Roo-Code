@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+-   - Add comprehensive Marketplace system for extensions and modes (thanks @mrubens!)
+
 ## [3.19.7] - 2025-06-11
 
 - Fix McpHub sidebar focus behavior to prevent unwanted focus grabbing
