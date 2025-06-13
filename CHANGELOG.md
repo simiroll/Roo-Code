@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.20.2
+
+### Patch Changes
+
+-   - Force tar-fs >=2.1.3 for security vulnerability fix (thanks @cte!)
+
 ## [3.20.1] - 2025-06-12
 
 - Temporarily revert thinking support for Bedrock models
