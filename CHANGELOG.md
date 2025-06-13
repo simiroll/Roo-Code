@@ -1,10 +1,10 @@
 # Roo Code Changelog
 
-## 3.20.1
+## [3.20.1] - 2025-06-12
 
-### Patch Changes
-
--   - Temporarily revert thinking support for Bedrock models
+- Temporarily revert thinking support for Bedrock models
+- Improve performance of MCP execution block
+- Add indexing status badge to chat view
 
 ## [3.20.0] - 2025-06-12
 
