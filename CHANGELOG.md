@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.20.1
+
+### Patch Changes
+
+-   - Temporarily revert thinking support for Bedrock models
+
 ## [3.20.0] - 2025-06-12
 
 - Add experimental Marketplace for extensions and modes (thanks @Smartsheet-JB-Brown, @elianiva, @monkeyDluffy6017, @NamesMT, @daniel-lxs, Cline, and more!)
