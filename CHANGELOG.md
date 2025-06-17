@@ -1,5 +1,15 @@
 # Roo Code Changelog
 
+## 3.21.0
+
+### Minor Changes
+
+-   - Launch Roo Marketplace with telemetry tracking and organizational support (thanks @mrubens!)
+
+### Patch Changes
+
+- Always focus the panel when clicked to ensure menu buttons are available
+
 ## [3.20.3] - 2025-06-13
 
 - Resolve diff editor race condition in multi-monitor setups (thanks @daniel-lxs!)
