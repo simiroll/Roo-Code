@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.21.3
+
+### Patch Changes
+
+-   - Add profile-specific context condensing thresholds (thanks @SannidhyaSah!)
+
 ## [3.21.2] - 2025-06-20
 
 - Add LaTeX math equation rendering in chat window
