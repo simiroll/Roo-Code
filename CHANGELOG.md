@@ -1,11 +1,19 @@
 # Roo Code Changelog
 
-## 3.21.2
+## [3.21.2] - 2025-06-20
 
-### Patch Changes
-
-- new feature allowing users to toggle whether an individual MCP (Model Context Protocol) tool is included in the context provided to the AI model
--   - Add LaTeX math equation rendering in chat window
+- Add LaTeX math equation rendering in chat window
+- Add toggle for excluding MCP server tools from the prompt (thanks @Rexarrior!)
+- Add symlink support to list_files tool
+- Fix marketplace blanking after populating
+- Fix recursive directory scanning in @ mention "Add Folder" functionality (thanks @village-way!)
+- Resolve phantom subtask display on cancel during API retry
+- Correct Gemini 2.5 Flash pricing (thanks @daniel-lxs!)
+- Resolve marketplace timeout issues and display installed MCPs (thanks @daniel-lxs!)
+- Onboarding tweaks to emphasize modes (thanks @brunobergher!)
+- Rename 'Boomerang Tasks' to 'Task Orchestration' for clarity
+- Remove command execution from attempt_completion
+- Fix markdown for links followed by punctuation (thanks @xyOz-dev!)
 
 ## [3.21.1] - 2025-06-19
 
