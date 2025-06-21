@@ -1,5 +1,12 @@
 # Roo Code Changelog
 
+## 3.21.2
+
+### Patch Changes
+
+- new feature allowing users to toggle whether an individual MCP (Model Context Protocol) tool is included in the context provided to the AI model
+-   - Add LaTeX math equation rendering in chat window
+
 ## [3.21.1] - 2025-06-19
 
 - Fix tree-sitter issues that were preventing codebase indexing from working correctly
