@@ -1,5 +1,12 @@
 # Roo Code Changelog
 
+## 3.21.4
+
+### Patch Changes
+
+- Close the browsertool properly when a remote browser is configured but a fallback local one is used
+-   - Fix start line not working in multiple apply diff (thanks @samhvw8!)
+
 ## [3.21.3] - 2025-06-21
 
 - Add profile-specific context condensing thresholds (thanks @SannidhyaSah!)
