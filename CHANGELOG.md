@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.22.2
+
+### Patch Changes
+
+-   - Fix: eliminate XSS vulnerability in CodeBlock component (thanks @KJ7LNW!)
+
 ## [3.22.1] - 2025-06-26
 
 - Add Gemini CLI provider (thanks Cline!)
