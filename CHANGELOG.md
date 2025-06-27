@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.22.1
+
+### Patch Changes
+
+-   - Add Gemini CLI provider for free access to Gemini models (thanks Cline!)
+
 ## [3.22.0] - 2025-06-25
 
 - Add 1-click task sharing
