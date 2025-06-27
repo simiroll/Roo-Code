@@ -1,10 +1,12 @@
 # Roo Code Changelog
 
-## 3.22.1
+## [3.22.1] - 2025-06-26
 
-### Patch Changes
-
--   - Add Gemini CLI provider for free access to Gemini models (thanks Cline!)
+- Add Gemini CLI provider (thanks Cline!)
+- Fix undefined mcp command (thanks @qdaxb!)
+- Use upstream_inference_cost for OpenRouter BYOK cost calculation and show cached token count (thanks @chrarnoldus!)
+- Update maxTokens value for qwen/qwen3-32b model on Groq (thanks @KanTakahiro!)
+- Standardize tooltip delays to 300ms
 
 ## [3.22.0] - 2025-06-25
 
