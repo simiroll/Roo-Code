@@ -1,5 +1,15 @@
 # Roo Code Changelog
 
+## 3.23.0
+
+### Minor Changes
+
+-   - Move codebase indexing out of experimental (thanks @daniel-lxs and @MuriloFP!)
+
+### Patch Changes
+
+- Fix model search being prefilled in dropdown to prevent confusion in available models
+
 ## [3.22.6] - 2025-07-02
 
 - Add timer-based auto approve for follow up questions (thanks @liwilliam2021!)
