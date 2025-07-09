@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.2
+
+### Patch Changes
+
+- Fix bug where auto-approval was intermittently failing
+
 ## [3.23.1] - 2025-07-09
 
 - Always show the code indexing dot under the chat text area
