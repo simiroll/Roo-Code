@@ -1,8 +1,6 @@
 # Roo Code Changelog
 
-## 3.23.2
-
-### Patch Changes
+## [3.23.2] - 2025-07-09
 
 - Fix bug where auto-approval was intermittently failing
 
