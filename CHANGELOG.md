@@ -1,10 +1,8 @@
 # Roo Code Changelog
 
-## 3.23.1
+## [3.23.1] - 2025-07-09
 
-### Patch Changes
-
-- Always show the code indexing dot
+- Always show the code indexing dot under the chat text area
 
 ## [3.23.0] - 2025-07-08
 
