@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.5
+
+### Patch Changes
+
+-   - Fix: use decodeURIComponent in openFile (thanks @vivekfyi!)
+
 ## [3.23.4] - 2025-07-09
 
 - Update chat area icons for better discoverability & consistency
