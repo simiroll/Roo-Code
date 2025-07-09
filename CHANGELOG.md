@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.1
+
+### Patch Changes
+
+- Always show the code indexing dot
+
 ## [3.23.0] - 2025-07-08
 
 - Move codebase indexing out of experimental (thanks @daniel-lxs and @MuriloFP!)
