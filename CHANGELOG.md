@@ -1,10 +1,8 @@
 # Roo Code Changelog
 
-## 3.23.3
+## [3.23.3] - 2025-07-09
 
-### Patch Changes
-
-- Remove feature3
+- Remove erroneous line from announcement modal
 
 ## [3.23.2] - 2025-07-09
 
