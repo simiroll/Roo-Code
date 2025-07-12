@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.7
+
+### Patch Changes
+
+-   - Fix Mermaid syntax warning (thanks @MuriloFP!)
+
 ## [3.23.6] - 2025-07-10
 
 - Grok 4
