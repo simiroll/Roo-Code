@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.8
+
+### Patch Changes
+
+-   - Add enable/disable toggle for code indexing (thanks @daniel-lxs!)
+
 ## [3.23.7] - 2025-07-11
 
 - Fix Mermaid syntax warning (thanks @MuriloFP!)
