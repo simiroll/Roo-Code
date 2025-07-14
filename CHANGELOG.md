@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.9
+
+### Patch Changes
+
+-   - Enable Claude Code provider to run natively on Windows (thanks @SannidhyaSah!)
+
 ## [3.23.8] - 2025-07-13
 
 - Add enable/disable toggle for code indexing (thanks @daniel-lxs!)
