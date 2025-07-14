@@ -1,10 +1,9 @@
 # Roo Code Changelog
 
-## 3.23.10
+## [3.23.10] - 2025-07-14
 
-### Patch Changes
-
--   - Prioritize built-in model dimensions over custom dimensions (thanks @daniel-lxs!)
+- Prioritize built-in model dimensions over custom dimensions (thanks @daniel-lxs!)
+- Add padding to the index model options
 
 ## [3.23.9] - 2025-07-14
 
