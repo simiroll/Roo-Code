@@ -1,10 +1,12 @@
 # Roo Code Changelog
 
-## 3.23.9
+## [3.23.9] - 2025-07-14
 
-### Patch Changes
-
--   - Enable Claude Code provider to run natively on Windows (thanks @SannidhyaSah!)
+- Enable Claude Code provider to run natively on Windows (thanks @SannidhyaSah!)
+- Add configurable timeout for command execution
+- Add gemini-embedding-001 model to code-index service (thanks @daniel-lxs!)
+- Resolve vector dimension mismatch error when switching embedding models
+- Return the cwd in the exec tool's response so that the model is not lost after subsequent calls (thanks @chris-garrett!)
 
 ## [3.23.8] - 2025-07-13
 
