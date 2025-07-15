@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.11
+
+### Patch Changes
+
+-   - Add Kimi K2 model to Groq along with fixes to context condensing math
+
 ## [3.23.10] - 2025-07-14
 
 - Prioritize built-in model dimensions over custom dimensions (thanks @daniel-lxs!)
