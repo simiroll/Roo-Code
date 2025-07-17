@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.13
+
+### Patch Changes
+
+- v3.23.13
+
 ## [3.23.12] - 2025-07-15
 
 - Update the max-token calculation in model-params to better support Kimi K2 and others
