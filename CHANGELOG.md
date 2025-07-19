@@ -1,10 +1,10 @@
 # Roo Code Changelog
 
-## 3.23.16
+## [3.23.16] - 2025-07-19
 
-### Patch Changes
-
--   - Add global rate limiting for OpenAI-compatible embeddings (thanks @daniel-lxs!)
+- Add global rate limiting for OpenAI-compatible embeddings (thanks @daniel-lxs!)
+- Add batch limiting to code indexer (thanks @daniel-lxs!)
+- Fix Docker port conflicts for evals services
 
 ## [3.23.15] - 2025-07-18
 
