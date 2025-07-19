@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.15
+
+### Patch Changes
+
+-   - Fix configurable delay for diagnostics to prevent premature error reporting
+
 ## [3.23.14] - 2025-07-17
 
 - Log api-initiated tasks to a tmp directory
