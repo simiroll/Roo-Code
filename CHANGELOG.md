@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.16
+
+### Patch Changes
+
+-   - Add global rate limiting for OpenAI-compatible embeddings (thanks @daniel-lxs!)
+
 ## [3.23.15] - 2025-07-18
 
 - Fix configurable delay for diagnostics to prevent premature error reporting
