@@ -1,5 +1,11 @@
 # Roo Code Changelog
 
+## 3.23.17
+
+### Patch Changes
+
+-   - Fix: move context condensing prompt to Prompts section (thanks @SannidhyaSah!)
+
 ## [3.23.16] - 2025-07-19
 
 - Add global rate limiting for OpenAI-compatible embeddings (thanks @daniel-lxs!)
