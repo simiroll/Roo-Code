@@ -1,10 +1,11 @@
 # Roo Code Changelog
 
-## 3.23.18
+## [3.23.18] - 2025-07-23
 
-### Patch Changes
-
--   - Fix: Resolve 'Bad substitution' error in command parsing (#5978 by @KJ7LNW, PR by @daniel-lxs)
+- Fix: Resolve 'Bad substitution' error in command parsing (#5978 by @KJ7LNW, PR by @daniel-lxs)
+- Fix: Add ErrorBoundary component for better error handling (#5731 by @elianiva, PR by @KJ7LNW)
+- Fix: Todo list toggle not working (thanks @chrarnoldus!)
+- Improve: Use SIGKILL for command execution timeouts in the "execa" variant (thanks @cte!)
 
 ## [3.23.17] - 2025-07-22
 
