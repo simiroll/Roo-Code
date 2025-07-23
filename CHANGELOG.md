@@ -1,10 +1,16 @@
 # Roo Code Changelog
 
+## 3.23.18
+
+### Patch Changes
+
+-   - Fix: Resolve 'Bad substitution' error in command parsing (#5978 by @KJ7LNW, PR by @daniel-lxs)
+
 ## [3.23.17] - 2025-07-22
 
 - Add: todo list tool enable checkbox to provider advanced settings
 - Add: Moonshot provider (thanks @CellenLee!)
-- Add: Qwen/Qwen3-235B-A22B-Instruct-2507 model to Chutes AI provider 
+- Add: Qwen/Qwen3-235B-A22B-Instruct-2507 model to Chutes AI provider
 - Fix: move context condensing prompt to Prompts section (thanks @SannidhyaSah!)
 - Add: jump icon for newly created files
 - Fix: add character limit to prevent terminal output context explosion
