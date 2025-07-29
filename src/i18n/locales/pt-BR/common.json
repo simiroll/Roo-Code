@@ -93,6 +93,16 @@
 			"generate_stream": "Erro de fluxo de contexto de geração do Gemini: {{error}}",
 			"generate_complete_prompt": "Erro de conclusão do Gemini: {{error}}",
 			"sources": "Fontes:"
+		},
+		"geminiCli": {
+			"oauthLoadFailed": "Falha ao carregar credenciais OAuth. Por favor, autentique-se primeiro: {{error}}",
+			"tokenRefreshFailed": "Falha ao atualizar token OAuth: {{error}}",
+			"onboardingTimeout": "A operação de integração expirou após 60 segundos. Por favor, tente novamente mais tarde.",
+			"projectDiscoveryFailed": "Não foi possível descobrir o ID do projeto. Certifique-se de estar autenticado com 'gemini auth'.",
+			"rateLimitExceeded": "Limite de taxa excedido. Os limites do nível gratuito foram atingidos.",
+			"badRequest": "Solicitação inválida: {{details}}",
+			"apiError": "Erro da API Gemini CLI: {{error}}",
+			"completionError": "Erro de conclusão do Gemini CLI: {{error}}"
 		}
 	},
 	"warnings": {
