@@ -182,6 +182,10 @@
 		"wantsToEditOutsideWorkspace": "Roo 想要編輯此工作區外的檔案：",
 		"wantsToEditProtected": "Roo 想要編輯受保護的設定檔案：",
 		"wantsToApplyBatchChanges": "Roo 想要對多個檔案套用變更：",
+		"wantsToGenerateImage": "Roo 想要產生圖片：",
+		"wantsToGenerateImageOutsideWorkspace": "Roo 想要在工作區外產生圖片：",
+		"wantsToGenerateImageProtected": "Roo 想要在受保護位置產生圖片：",
+		"didGenerateImage": "Roo 已產生圖片：",
 		"wantsToCreate": "Roo 想要建立新檔案：",
 		"wantsToSearchReplace": "Roo 想要在此檔案中搜尋和取代：",
 		"didSearchReplace": "Roo 已在此檔案執行搜尋和取代：",
@@ -274,6 +278,12 @@
 	},
 	"announcement": {
 		"title": "🎉 Roo Code {{version}} 已發布",
+		"stealthModel": {
+			"feature": "Sonic 隱形模型現在是 <bold>Grok Code Fast</bold>！這個高效能推理模型現已作為 <code>grok-code-fast-1</code> 在 <bold>xAI (Grok)</bold> 提供商下提供。",
+			"note": "作為對 Sonic 所有寶貴回饋的感謝，xAI 將透過 <bold>Roo Code Cloud</bold> 提供商延長 <code>grok-code-fast-1</code> 的免費存取一週。",
+			"connectButton": "連接到 Roo Code Cloud",
+			"selectModel": "造訪<settingsLink>設定</settingsLink>更新你的提供商設定。"
+		},
 		"description": "Roo Code {{version}} 帶來強大的新功能和重大改進，提升您的開發工作流程。",
 		"whatsNew": "新功能",
 		"feature1": "<bold>訊息佇列</bold>：在 Roo 工作時將多個訊息排入佇列，讓您可以不間斷地繼續規劃工作流程。",
@@ -352,9 +362,9 @@
 		"ariaLabel": "版本 {{version}} - 點選查看發布說明"
 	},
 	"rooCloudCTA": {
-		"title": "Roo Code Cloud 即將推出！",
+		"title": "Roo Code Cloud 正在進化！",
 		"description": "在雲端執行 Roomote 遠端代理、隨時隨地存取您的工作、與他人協作等等。",
-		"joinWaitlist": "加入等候名單以獲得早期存取權限。"
+		"joinWaitlist": "註冊以獲得最新更新。"
 	},
 	"command": {
 		"triggerDescription": "觸發 {{name}} 命令"
@@ -362,7 +372,8 @@
 	"slashCommands": {
 		"tooltip": "管理斜線命令",
 		"title": "斜線命令",
-		"description": "建立自訂斜線命令，以便快速存取常用的提示詞和工作流程。<DocsLink>說明文件</DocsLink>",
+		"description": "使用內建斜線命令或建立自訂命令，以便快速存取常用的提示詞和工作流程。<DocsLink>說明文件</DocsLink>",
+		"builtInCommands": "內建命令",
 		"globalCommands": "全域命令",
 		"workspaceCommands": "工作區命令",
 		"globalCommand": "全域命令",
@@ -380,5 +391,9 @@
 	"queuedMessages": {
 		"title": "佇列中的訊息：",
 		"clickToEdit": "點選以編輯訊息"
+	},
+	"slashCommand": {
+		"wantsToRun": "Roo 想要執行斜線指令:",
+		"didRun": "Roo 執行了斜線指令:"
 	}
 }
