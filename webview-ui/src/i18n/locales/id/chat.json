@@ -99,24 +99,17 @@
 		"tooltip": "Batalkan operasi saat ini"
 	},
 	"scrollToBottom": "Gulir ke bawah chat",
-	"about": "Buat, refaktor, dan debug kode dengan bantuan AI.<br />Lihat <DocsLink>dokumentasi</DocsLink> kami untuk mempelajari lebih lanjut.",
-	"onboarding": "Daftar tugas di workspace ini kosong.",
+	"about": "Roo Code adalah seluruh tim pengembang AI di editor Anda.",
+	"docs": "Lihat <DocsLink>dokumentasi</DocsLink> kami untuk mempelajari lebih lanjut.",
+	"onboarding": "Daftar tugas Anda di ruang kerja ini kosong.",
 	"rooTips": {
-		"boomerangTasks": {
-			"title": "Orkestrasi Tugas",
-			"description": "Bagi tugas menjadi bagian-bagian kecil yang dapat dikelola"
-		},
-		"stickyModels": {
-			"title": "Model Sticky",
-			"description": "Setiap mode mengingat model terakhir yang kamu gunakan"
-		},
-		"tools": {
-			"title": "Tools",
-			"description": "Izinkan AI menyelesaikan masalah dengan browsing web, menjalankan perintah, dan lainnya"
-		},
 		"customizableModes": {
-			"title": "Mode yang Dapat Disesuaikan",
-			"description": "Persona khusus dengan perilaku dan model yang ditugaskan sendiri"
+			"title": "Mode yang dapat disesuaikan",
+			"description": "Persona khusus yang tetap mengerjakan tugas dan memberikan hasil."
+		},
+		"modelAgnostic": {
+			"title": "Bawa model Anda sendiri",
+			"description": "Gunakan kunci penyedia Anda sendiri atau bahkan jalankan inferensi lokal — tanpa markup, tanpa lock-in, tanpa batasan"
 		}
 	},
 	"selectMode": "Pilih mode untuk interaksi",
@@ -157,6 +150,9 @@
 		"initializingWarning": "Masih menginisialisasi checkpoint... Jika ini terlalu lama, kamu bisa menonaktifkan checkpoint di <settingsLink>pengaturan</settingsLink> dan restart tugas.",
 		"menu": {
 			"viewDiff": "Lihat Diff",
+			"more": "Opsi lainnya",
+			"viewDiffFromInit": "Lihat Semua Perubahan",
+			"viewDiffWithCurrent": "Lihat Perubahan Sejak Checkpoint Ini",
 			"restore": "Pulihkan Checkpoint",
 			"restoreFiles": "Pulihkan File",
 			"restoreFilesDescription": "Mengembalikan file proyek kamu ke snapshot yang diambil pada titik ini.",
@@ -291,6 +287,7 @@
 		"toggleAriaLabel": "Beralih persetujuan otomatis",
 		"disabledAriaLabel": "Persetujuan otomatis dinonaktifkan - pilih opsi terlebih dahulu",
 		"triggerLabelOff": "Persetujuan otomatis mati",
+		"triggerLabelOffShort": "Mati",
 		"triggerLabel_zero": "0 disetujui otomatis",
 		"triggerLabel_one": "1 disetujui otomatis",
 		"triggerLabel_other": "{{count}} disetujui otomatis",
@@ -305,6 +302,19 @@
 			"selectModel": "Pilih <code>roo/code-supernova</code> dari penyedia Roo Code Cloud di Pengaturan untuk memulai.",
 			"goToSettingsButton": "Pergi ke Pengaturan"
 		},
+		"release": {
+			"heading": "Baru di Ekstensi:",
+			"openRouterEmbeddings": "Dukungan untuk model embedding OpenRouter",
+			"chutesDynamic": "Chutes sekarang memuat model terbaru secara dinamis",
+			"queuedMessagesFix": "Perbaikan untuk pesan antrian yang hilang"
+		},
+		"cloudAgents": {
+			"heading": "Baru di Cloud:",
+			"prFixer": "Memperkenalkan agen cloud <bold>PR Fixer</bold> untuk melengkapi PR Reviewer.",
+			"prFixerDescription": "PR Fixer dari Roo Code menerapkan perubahan berkualitas tinggi ke PR Anda, langsung dari GitHub. Panggil melalui komentar PR dan ia akan membaca seluruh riwayat komentar untuk memahami konteks, kesepakatan, dan trade-off - kemudian menerapkan perbaikan yang tepat.",
+			"tryPrFixerButton": "Coba PR Fixer"
+		},
+		"careers": "Juga, <careersLink>kami sedang merekrut!</careersLink>",
 		"socialLinks": "Bergabunglah dengan kami di <xLink>X</xLink>, <discordLink>Discord</discordLink>, atau <redditLink>r/RooCode</redditLink> 🚀"
 	},
 	"reasoning": {
@@ -418,5 +428,13 @@
 	"slashCommand": {
 		"wantsToRun": "Roo ingin menjalankan perintah slash",
 		"didRun": "Roo telah menjalankan perintah slash"
+	},
+	"docs": "Check our <DocsLink>docs</DocsLink> to learn more.",
+	"todo": {
+		"partial": "{{completed}} dari {{total}} to-do selesai",
+		"complete": "{{total}} to-do selesai",
+		"updated": "Memperbarui daftar to-do",
+		"completed": "Selesai",
+		"started": "Dimulai"
 	}
 }

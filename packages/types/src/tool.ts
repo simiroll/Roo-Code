@@ -20,7 +20,6 @@ export const toolNames = [
 	"write_to_file",
 	"apply_diff",
 	"insert_content",
-	"search_and_replace",
 	"search_files",
 	"list_files",
 	"list_code_definition_names",
@@ -55,3 +54,17 @@ export const toolUsageSchema = z.record(
 )
 
 export type ToolUsage = z.infer<typeof toolUsageSchema>
+
+/**
+ * Tool protocol constants
+ */
+export const TOOL_PROTOCOL = {
+	XML: "xml",
+	NATIVE: "native",
+} as const
+
+/**
+ * Tool protocol type for system prompt generation
+ * Derived from TOOL_PROTOCOL constants to ensure type safety
+ */
+export type ToolProtocol = (typeof TOOL_PROTOCOL)[keyof typeof TOOL_PROTOCOL]

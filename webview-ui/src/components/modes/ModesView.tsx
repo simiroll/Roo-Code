@@ -20,6 +20,7 @@ import {
 	getCustomInstructions,
 	getAllModes,
 	findModeBySlug as findCustomModeBySlug,
+	defaultModeSlug,
 } from "@roo/modes"
 import { TOOL_GROUPS } from "@roo/tools"
 
@@ -54,6 +55,8 @@ import { useEscapeKey } from "@src/hooks/useEscapeKey"
 const availableGroups = (Object.keys(TOOL_GROUPS) as ToolGroup[]).filter((group) => !TOOL_GROUPS[group].alwaysAvailable)
 
 type ModeSource = "global" | "project"
+
+type ImportModeResult = { type: "importModeResult"; success: boolean; slug?: string; error?: string }
 
 type ModesViewProps = {
 	onDone: () => void
@@ -185,6 +188,29 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 		},
 		[visualMode, switchMode],
 	)
+
+	// Refs to track latest state/functions for message handler (which has no dependencies)
+	const handleModeSwitchRef = useRef(handleModeSwitch)
+	const customModesRef = useRef(customModes)
+	const switchModeRef = useRef(switchMode)
+
+	// Update refs when dependencies change
+	useEffect(() => {
+		handleModeSwitchRef.current = handleModeSwitch
+	}, [handleModeSwitch])
+
+	useEffect(() => {
+		customModesRef.current = customModes
+	}, [customModes])
+
+	useEffect(() => {
+		switchModeRef.current = switchMode
+	}, [switchMode])
+
+	// Sync visualMode with backend mode changes to prevent desync
+	useEffect(() => {
+		setVisualMode(mode)
+	}, [mode])
 
 	// Handler for popover open state change
 	const onOpenChange = useCallback((open: boolean) => {
@@ -460,7 +486,21 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 				setIsImporting(false)
 				setShowImportDialog(false)
 
-				if (!message.success) {
+				if (message.success) {
+					const { slug } = message as ImportModeResult
+					if (slug) {
+						// Try switching using the freshest mode list available
+						const all = getAllModes(customModesRef.current)
+						const importedMode = all.find((m) => m.slug === slug)
+						if (importedMode) {
+							handleModeSwitchRef.current(importedMode)
+						} else {
+							// Fallback: slug not yet in state (race condition) - select default mode
+							setVisualMode(defaultModeSlug)
+							switchModeRef.current?.(defaultModeSlug)
+						}
+					}
+				} else {
 					// Only log error if it's not a cancellation
 					if (message.error !== "cancelled") {
 						console.error("Failed to import mode:", message.error)
@@ -849,7 +889,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 							})()}
 							onChange={(e) => {
 								const value =
-									(e as unknown as CustomEvent)?.detail?.target?.value ||
+									(e as unknown as CustomEvent)?.detail?.target?.value ??
 									((e as any).target as HTMLTextAreaElement).value
 								const customMode = findModeBySlug(visualMode, customModes)
 								if (customMode) {
@@ -904,7 +944,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 							})()}
 							onChange={(e) => {
 								const value =
-									(e as unknown as CustomEvent)?.detail?.target?.value ||
+									(e as unknown as CustomEvent)?.detail?.target?.value ??
 									((e as any).target as HTMLTextAreaElement).value
 								const customMode = findModeBySlug(visualMode, customModes)
 								if (customMode) {
@@ -959,7 +999,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 							})()}
 							onChange={(e) => {
 								const value =
-									(e as unknown as CustomEvent)?.detail?.target?.value ||
+									(e as unknown as CustomEvent)?.detail?.target?.value ??
 									((e as any).target as HTMLTextAreaElement).value
 								const customMode = findModeBySlug(visualMode, customModes)
 								if (customMode) {
@@ -1118,14 +1158,15 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 							})()}
 							onChange={(e) => {
 								const value =
-									(e as unknown as CustomEvent)?.detail?.target?.value ||
+									(e as unknown as CustomEvent)?.detail?.target?.value ??
 									((e as any).target as HTMLTextAreaElement).value
 								const customMode = findModeBySlug(visualMode, customModes)
 								if (customMode) {
 									// For custom modes, update the JSON file
 									updateCustomMode(visualMode, {
 										...customMode,
-										customInstructions: value.trim() || undefined,
+										// Preserve empty string; only treat null/undefined as unset
+										customInstructions: value ?? undefined,
 										source: customMode.source || "global",
 									})
 								} else {
@@ -1187,7 +1228,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 				<div className="pb-4 border-b border-vscode-input-border">
 					<div className="flex gap-2 mb-4">
 						<Button
-							variant="default"
+							variant="primary"
 							onClick={() => {
 								const currentMode = getCurrentMode()
 								if (currentMode) {
@@ -1224,7 +1265,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 						{/* Export button - visible when any mode is selected */}
 						{getCurrentMode() && (
 							<Button
-								variant="default"
+								variant="primary"
 								onClick={() => {
 									const currentMode = getCurrentMode()
 									if (currentMode?.slug && !isExporting) {
@@ -1244,7 +1285,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 						)}
 						{/* Import button - always visible */}
 						<Button
-							variant="default"
+							variant="primary"
 							onClick={() => setShowImportDialog(true)}
 							disabled={isImporting}
 							title={t("prompts:modes.importMode")}
@@ -1335,12 +1376,12 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 						value={customInstructions || ""}
 						onChange={(e) => {
 							const value =
-								(e as unknown as CustomEvent)?.detail?.target?.value ||
+								(e as unknown as CustomEvent)?.detail?.target?.value ??
 								((e as any).target as HTMLTextAreaElement).value
-							setCustomInstructions(value || undefined)
+							setCustomInstructions(value ?? undefined)
 							vscode.postMessage({
 								type: "customInstructions",
-								text: value.trim() || undefined,
+								text: value ?? undefined,
 							})
 						}}
 						rows={4}
@@ -1564,7 +1605,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 							<Button variant="secondary" onClick={() => setIsCreateModeDialogOpen(false)}>
 								{t("prompts:createModeDialog.buttons.cancel")}
 							</Button>
-							<Button variant="default" onClick={handleCreateMode}>
+							<Button variant="primary" onClick={handleCreateMode}>
 								{t("prompts:createModeDialog.buttons.create")}
 							</Button>
 						</div>
@@ -1641,7 +1682,7 @@ const ModesView = ({ onDone }: ModesViewProps) => {
 								{t("prompts:createModeDialog.buttons.cancel")}
 							</Button>
 							<Button
-								variant="default"
+								variant="primary"
 								onClick={() => {
 									if (!isImporting) {
 										const selectedLevel = (
