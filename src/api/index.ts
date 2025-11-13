@@ -41,6 +41,7 @@ import {
 	FeatherlessHandler,
 	VercelAiGatewayHandler,
 	DeepInfraHandler,
+	MiniMaxHandler,
 } from "./providers"
 import { NativeOllamaHandler } from "./providers/native-ollama"
 
@@ -49,23 +50,20 @@ export interface SingleCompletionHandler {
 }
 
 export interface ApiHandlerCreateMessageMetadata {
-	mode?: string
+	/**
+	 * Task ID used for tracking and provider-specific features:
+	 * - DeepInfra: Used as prompt_cache_key for caching
+	 * - Roo: Sent as X-Roo-Task-ID header
+	 * - Requesty: Sent as trace_id
+	 * - Unbound: Sent in unbound_metadata
+	 */
 	taskId: string
-	previousResponseId?: string
 	/**
-	 * When true, the provider must NOT fall back to internal continuity state
-	 * (e.g., lastResponseId) if previousResponseId is absent.
-	 * Used to enforce "skip once" after a condense operation.
+	 * Current mode slug for provider-specific tracking:
+	 * - Requesty: Sent in extra metadata
+	 * - Unbound: Sent in unbound_metadata
 	 */
-	suppressPreviousResponseId?: boolean
-	/**
-	 * Controls whether the response should be stored for 30 days in OpenAI's Responses API.
-	 * When true (default), responses are stored and can be referenced in future requests
-	 * using the previous_response_id for efficient conversation continuity.
-	 * Set to false to opt out of response storage for privacy or compliance reasons.
-	 * @default true
-	 */
-	store?: boolean
+	mode?: string
 }
 
 export interface ApiHandler {
@@ -168,6 +166,8 @@ export function buildApiHandler(configuration: ProviderSettings): ApiHandler {
 			return new FeatherlessHandler(options)
 		case "vercel-ai-gateway":
 			return new VercelAiGatewayHandler(options)
+		case "minimax":
+			return new MiniMaxHandler(options)
 		default:
 			apiProvider satisfies "gemini-cli" | undefined
 			return new AnthropicHandler(options)

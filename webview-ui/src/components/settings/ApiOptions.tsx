@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react"
 import { convertHeadersToObject } from "./utils/headers"
 import { useDebounce } from "react-use"
-import { VSCodeLink, VSCodeButton } from "@vscode/webview-ui-toolkit/react"
+import { VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 import { ExternalLinkIcon } from "@radix-ui/react-icons"
 
 import {
@@ -38,6 +38,7 @@ import {
 	rooDefaultModelId,
 	vercelAiGatewayDefaultModelId,
 	deepInfraDefaultModelId,
+	minimaxDefaultModelId,
 } from "@roo-code/types"
 
 import { vscode } from "@src/utils/vscode"
@@ -87,6 +88,7 @@ import {
 	OpenRouter,
 	QwenCode,
 	Requesty,
+	Roo,
 	SambaNova,
 	Unbound,
 	Vertex,
@@ -97,6 +99,7 @@ import {
 	Featherless,
 	VercelAiGateway,
 	DeepInfra,
+	MiniMax,
 } from "./providers"
 
 import { MODELS_BY_PROVIDER, PROVIDERS } from "./constants"
@@ -104,6 +107,7 @@ import { inputEventTransform, noTransform } from "./transforms"
 import { ModelInfoView } from "./ModelInfoView"
 import { ApiErrorMessage } from "./ApiErrorMessage"
 import { ThinkingBudget } from "./ThinkingBudget"
+import { SimpleThinkingBudget } from "./SimpleThinkingBudget"
 import { Verbosity } from "./Verbosity"
 import { DiffSettingsControl } from "./DiffSettingsControl"
 import { TodoListSettingsControl } from "./TodoListSettingsControl"
@@ -190,18 +194,24 @@ const ApiOptions = ({
 
 	const { data: routerModels, refetch: refetchRouterModels } = useRouterModels()
 
-	const { data: openRouterModelProviders } = useOpenRouterModelProviders(apiConfiguration?.openRouterModelId, {
-		enabled:
-			!!apiConfiguration?.openRouterModelId &&
-			routerModels?.openrouter &&
-			Object.keys(routerModels.openrouter).length > 1 &&
-			apiConfiguration.openRouterModelId in routerModels.openrouter,
-	})
+	const { data: openRouterModelProviders } = useOpenRouterModelProviders(
+		apiConfiguration?.openRouterModelId,
+		apiConfiguration?.openRouterBaseUrl,
+		{
+			enabled:
+				!!apiConfiguration?.openRouterModelId &&
+				routerModels?.openrouter &&
+				Object.keys(routerModels.openrouter).length > 1 &&
+				apiConfiguration.openRouterModelId in routerModels.openrouter,
+		},
+	)
 
 	// Update `apiModelId` whenever `selectedModelId` changes.
 	useEffect(() => {
 		if (selectedModelId && apiConfiguration.apiModelId !== selectedModelId) {
-			setApiConfigurationField("apiModelId", selectedModelId)
+			// Pass false as third parameter to indicate this is not a user action
+			// This is an internal sync, not a user-initiated change
+			setApiConfigurationField("apiModelId", selectedModelId, false)
 		}
 	}, [selectedModelId, setApiConfigurationField, apiConfiguration.apiModelId])
 
@@ -228,7 +238,11 @@ const ApiOptions = ({
 				vscode.postMessage({ type: "requestLmStudioModels" })
 			} else if (selectedProvider === "vscode-lm") {
 				vscode.postMessage({ type: "requestVsCodeLmModels" })
-			} else if (selectedProvider === "litellm" || selectedProvider === "deepinfra") {
+			} else if (
+				selectedProvider === "litellm" ||
+				selectedProvider === "deepinfra" ||
+				selectedProvider === "roo"
+			) {
 				vscode.postMessage({ type: "requestRouterModels" })
 			}
 		},
@@ -263,15 +277,24 @@ const ApiOptions = ({
 
 		const filteredModels = filterModels(models, selectedProvider, organizationAllowList)
 
-		const modelOptions = filteredModels
-			? Object.keys(filteredModels).map((modelId) => ({
-					value: modelId,
-					label: modelId,
-				}))
+		// Include the currently selected model even if deprecated (so users can see what they have selected)
+		// But filter out other deprecated models from being newly selectable
+		const availableModels = filteredModels
+			? Object.entries(filteredModels)
+					.filter(([modelId, modelInfo]) => {
+						// Always include the currently selected model
+						if (modelId === selectedModelId) return true
+						// Filter out deprecated models that aren't currently selected
+						return !modelInfo.deprecated
+					})
+					.map(([modelId]) => ({
+						value: modelId,
+						label: modelId,
+					}))
 			: []
 
-		return modelOptions
-	}, [selectedProvider, organizationAllowList])
+		return availableModels
+	}, [selectedProvider, organizationAllowList, selectedModelId])
 
 	const onProviderChange = useCallback(
 		(value: ProviderName) => {
@@ -327,6 +350,7 @@ const ApiOptions = ({
 				deepseek: { field: "apiModelId", default: deepSeekDefaultModelId },
 				doubao: { field: "apiModelId", default: doubaoDefaultModelId },
 				moonshot: { field: "apiModelId", default: moonshotDefaultModelId },
+				minimax: { field: "apiModelId", default: minimaxDefaultModelId },
 				mistral: { field: "apiModelId", default: mistralDefaultModelId },
 				xai: { field: "apiModelId", default: xaiDefaultModelId },
 				groq: { field: "apiModelId", default: groqDefaultModelId },
@@ -337,7 +361,7 @@ const ApiOptions = ({
 				zai: {
 					field: "apiModelId",
 					default:
-						apiConfiguration.zaiApiLine === "china"
+						apiConfiguration.zaiApiLine === "china_coding"
 							? mainlandZAiDefaultModelId
 							: internationalZAiDefaultModelId,
 				},
@@ -583,6 +607,10 @@ const ApiOptions = ({
 				<Moonshot apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
 			)}
 
+			{selectedProvider === "minimax" && (
+				<MiniMax apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
+			)}
+
 			{selectedProvider === "vscode-lm" && (
 				<VSCodeLM apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
 			)}
@@ -608,7 +636,13 @@ const ApiOptions = ({
 			)}
 
 			{selectedProvider === "chutes" && (
-				<Chutes apiConfiguration={apiConfiguration} setApiConfigurationField={setApiConfigurationField} />
+				<Chutes
+					apiConfiguration={apiConfiguration}
+					setApiConfigurationField={setApiConfigurationField}
+					routerModels={routerModels}
+					organizationAllowList={organizationAllowList}
+					modelValidationError={modelValidationError}
+				/>
 			)}
 
 			{selectedProvider === "litellm" && (
@@ -663,22 +697,14 @@ const ApiOptions = ({
 			)}
 
 			{selectedProvider === "roo" && (
-				<div className="flex flex-col gap-3">
-					{cloudIsAuthenticated ? (
-						<div className="text-sm text-vscode-descriptionForeground">
-							{t("settings:providers.roo.authenticatedMessage")}
-						</div>
-					) : (
-						<div className="flex flex-col gap-2">
-							<VSCodeButton
-								appearance="primary"
-								onClick={() => vscode.postMessage({ type: "rooCloudSignIn" })}
-								className="w-fit">
-								{t("settings:providers.roo.connectButton")}
-							</VSCodeButton>
-						</div>
-					)}
-				</div>
+				<Roo
+					apiConfiguration={apiConfiguration}
+					setApiConfigurationField={setApiConfigurationField}
+					routerModels={routerModels}
+					cloudIsAuthenticated={cloudIsAuthenticated}
+					organizationAllowList={organizationAllowList}
+					modelValidationError={modelValidationError}
+				/>
 			)}
 
 			{selectedProvider === "featherless" && (
@@ -721,6 +747,11 @@ const ApiOptions = ({
 						</Select>
 					</div>
 
+					{/* Show error if a deprecated model is selected */}
+					{selectedModelInfo?.deprecated && (
+						<ApiErrorMessage errorMessage={t("settings:validation.modelDeprecated")} />
+					)}
+
 					{selectedProvider === "bedrock" && selectedModelId === "custom-arn" && (
 						<BedrockCustomArn
 							apiConfiguration={apiConfiguration}
@@ -728,22 +759,34 @@ const ApiOptions = ({
 						/>
 					)}
 
-					<ModelInfoView
-						apiProvider={selectedProvider}
-						selectedModelId={selectedModelId}
-						modelInfo={selectedModelInfo}
-						isDescriptionExpanded={isDescriptionExpanded}
-						setIsDescriptionExpanded={setIsDescriptionExpanded}
-					/>
+					{/* Only show model info if not deprecated */}
+					{!selectedModelInfo?.deprecated && (
+						<ModelInfoView
+							apiProvider={selectedProvider}
+							selectedModelId={selectedModelId}
+							modelInfo={selectedModelInfo}
+							isDescriptionExpanded={isDescriptionExpanded}
+							setIsDescriptionExpanded={setIsDescriptionExpanded}
+						/>
+					)}
 				</>
 			)}
 
-			<ThinkingBudget
-				key={`${selectedProvider}-${selectedModelId}`}
-				apiConfiguration={apiConfiguration}
-				setApiConfigurationField={setApiConfigurationField}
-				modelInfo={selectedModelInfo}
-			/>
+			{selectedProvider === "roo" ? (
+				<SimpleThinkingBudget
+					key={`${selectedProvider}-${selectedModelId}`}
+					apiConfiguration={apiConfiguration}
+					setApiConfigurationField={setApiConfigurationField}
+					modelInfo={selectedModelInfo}
+				/>
+			) : (
+				<ThinkingBudget
+					key={`${selectedProvider}-${selectedModelId}`}
+					apiConfiguration={apiConfiguration}
+					setApiConfigurationField={setApiConfigurationField}
+					modelInfo={selectedModelInfo}
+				/>
+			)}
 
 			{/* Gate Verbosity UI by capability flag */}
 			{selectedModelInfo?.supportsVerbosity && (
@@ -775,6 +818,7 @@ const ApiOptions = ({
 								value={apiConfiguration.modelTemperature}
 								onChange={handleInputChange("modelTemperature", noTransform)}
 								maxValue={2}
+								defaultValue={selectedModelInfo?.defaultTemperature}
 							/>
 						)}
 						<RateLimitSecondsControl

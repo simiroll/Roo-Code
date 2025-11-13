@@ -3,7 +3,7 @@
 	"displayName": "%extension.displayName%",
 	"description": "%extension.description%",
 	"publisher": "RooVeterinaryInc",
-	"version": "3.28.9",
+	"version": "3.31.2",
 	"icon": "assets/icons/icon.png",
 	"galleryBanner": {
 		"color": "#617A91",
@@ -20,7 +20,7 @@
 		"type": "git",
 		"url": "https://github.com/RooCodeInc/Roo-Code"
 	},
-	"homepage": "https://github.com/RooCodeInc/Roo-Code",
+	"homepage": "https://roocode.com",
 	"categories": [
 		"AI",
 		"Chat",
@@ -310,10 +310,10 @@
 		"keybindings": [
 			{
 				"command": "roo-cline.addToContext",
-				"key": "cmd+y",
-				"mac": "cmd+y",
-				"win": "ctrl+y",
-				"linux": "ctrl+y",
+				"key": "cmd+k cmd+a",
+				"mac": "cmd+k cmd+a",
+				"win": "ctrl+k ctrl+a",
+				"linux": "ctrl+k ctrl+a",
 				"when": "editorTextFocus && editorHasSelection"
 			},
 			{
@@ -406,6 +406,13 @@
 					"default": "",
 					"description": "%settings.autoImportSettingsPath.description%"
 				},
+				"roo-cline.maximumIndexedFilesForFileSearch": {
+					"type": "number",
+					"default": 10000,
+					"minimum": 5000,
+					"maximum": 500000,
+					"description": "%settings.maximumIndexedFilesForFileSearch.description%"
+				},
 				"roo-cline.useAgentRules": {
 					"type": "boolean",
 					"default": true,
@@ -451,8 +458,8 @@
 		"@anthropic-ai/bedrock-sdk": "^0.10.2",
 		"@anthropic-ai/sdk": "^0.37.0",
 		"@anthropic-ai/vertex-sdk": "^0.7.0",
-		"@aws-sdk/client-bedrock-runtime": "^3.848.0",
-		"@aws-sdk/credential-providers": "^3.848.0",
+		"@aws-sdk/client-bedrock-runtime": "^3.922.0",
+		"@aws-sdk/credential-providers": "^3.922.0",
 		"@google/genai": "^1.0.0",
 		"@lmstudio/sdk": "^1.1.1",
 		"@mistralai/mistralai": "^1.9.18",
@@ -505,6 +512,7 @@
 		"sanitize-filename": "^1.6.3",
 		"say": "^0.16.0",
 		"serialize-error": "^12.0.0",
+		"shell-quote": "^1.8.2",
 		"simple-git": "^3.27.0",
 		"socket.io-client": "^4.8.1",
 		"sound-play": "^1.1.0",
@@ -539,6 +547,7 @@
 		"@types/node-ipc": "^9.2.3",
 		"@types/proper-lockfile": "^4.1.4",
 		"@types/ps-tree": "^1.1.6",
+		"@types/shell-quote": "^1.7.5",
 		"@types/stream-json": "^1.7.8",
 		"@types/string-similarity": "^4.0.2",
 		"@types/tmp": "^0.2.6",
