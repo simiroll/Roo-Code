@@ -9,7 +9,6 @@ import {
 	moonshotModels,
 	minimaxModels,
 	geminiModels,
-	geminiCliDefaultModelId,
 	geminiCliModels,
 	mistralModels,
 	openAiModelInfoSaneDefaults,
@@ -27,6 +26,7 @@ import {
 	fireworksModels,
 	featherlessModels,
 	ioIntelligenceModels,
+	basetenModels,
 	qwenCodeModels,
 	BEDROCK_1M_CONTEXT_MODEL_IDS,
 	isDynamicProvider,
@@ -198,6 +198,11 @@ function getSelectedModel({
 			const info = routerModels.chutes?.[id]
 			return { id, info }
 		}
+		case "baseten": {
+			const id = apiConfiguration.apiModelId ?? defaultModelId
+			const info = basetenModels[id as keyof typeof basetenModels]
+			return { id, info }
+		}
 		case "bedrock": {
 			const id = apiConfiguration.apiModelId ?? defaultModelId
 			const baseInfo = bedrockModels[id as keyof typeof bedrockModels]
@@ -233,7 +238,7 @@ function getSelectedModel({
 			return { id, info }
 		}
 		case "gemini-cli": {
-			const id = apiConfiguration.apiModelId ?? geminiCliDefaultModelId
+			const id = apiConfiguration.apiModelId ?? defaultModelId
 			const info = geminiCliModels[id as keyof typeof geminiCliModels]
 			return { id, info }
 		}

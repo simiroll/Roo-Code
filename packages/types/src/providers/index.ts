@@ -1,4 +1,5 @@
 export * from "./anthropic.js"
+export * from "./baseten.js"
 export * from "./bedrock.js"
 export * from "./cerebras.js"
 export * from "./chutes.js"
@@ -34,6 +35,7 @@ export * from "./deepinfra.js"
 export * from "./minimax.js"
 
 import { anthropicDefaultModelId } from "./anthropic.js"
+import { basetenDefaultModelId } from "./baseten.js"
 import { bedrockDefaultModelId } from "./bedrock.js"
 import { cerebrasDefaultModelId } from "./cerebras.js"
 import { chutesDefaultModelId } from "./chutes.js"
@@ -43,6 +45,7 @@ import { doubaoDefaultModelId } from "./doubao.js"
 import { featherlessDefaultModelId } from "./featherless.js"
 import { fireworksDefaultModelId } from "./fireworks.js"
 import { geminiDefaultModelId } from "./gemini.js"
+import { geminiCliDefaultModelId } from "./gemini-cli.js"
 import { glamaDefaultModelId } from "./glama.js"
 import { groqDefaultModelId } from "./groq.js"
 import { ioIntelligenceDefaultModelId } from "./io-intelligence.js"
@@ -94,6 +97,8 @@ export function getProviderDefaultModelId(
 			return "meta-llama/Llama-3.3-70B-Instruct"
 		case "chutes":
 			return chutesDefaultModelId
+		case "baseten":
+			return basetenDefaultModelId
 		case "bedrock":
 			return bedrockDefaultModelId
 		case "vertex":
@@ -144,6 +149,7 @@ export function getProviderDefaultModelId(
 			return vercelAiGatewayDefaultModelId
 		case "anthropic":
 		case "gemini-cli":
+			return geminiCliDefaultModelId
 		case "human-relay":
 		case "fake-ai":
 		default:
