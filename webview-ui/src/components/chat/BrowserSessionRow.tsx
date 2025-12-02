@@ -7,7 +7,6 @@ import { BrowserAction, BrowserActionResult, ClineSayBrowserAction } from "@roo/
 
 import { vscode } from "@src/utils/vscode"
 import { useExtensionState } from "@src/context/ExtensionStateContext"
-import { Button } from "@src/components/ui"
 
 import CodeBlock from "../common/CodeBlock"
 import { ProgressIndicator } from "./ProgressIndicator"

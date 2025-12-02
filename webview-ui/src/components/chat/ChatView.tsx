@@ -1239,7 +1239,6 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 					/>
 				)
 			}
-			const hasCheckpoint = modifiedMessages.some((message) => message.say === "checkpoint_saved")
 
 			// Check if this is a browser session status message
 			if (messageOrGroup.type === "say" && messageOrGroup.say === "browser_session_status") {

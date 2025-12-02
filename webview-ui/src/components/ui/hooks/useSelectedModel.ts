@@ -9,6 +9,7 @@ import {
 	moonshotModels,
 	minimaxModels,
 	geminiModels,
+	geminiCliModels,
 	mistralModels,
 	openAiModelInfoSaneDefaults,
 	openAiNativeModels,
@@ -237,7 +238,7 @@ function getSelectedModel({
 			return { id, info }
 		}
 		case "gemini-cli": {
-			const id = apiConfiguration.apiModelId ?? geminiCliDefaultModelId
+			const id = apiConfiguration.apiModelId ?? defaultModelId
 			const info = geminiCliModels[id as keyof typeof geminiCliModels]
 			return { id, info }
 		}

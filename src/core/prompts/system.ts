@@ -29,7 +29,6 @@ import {
 	addCustomInstructions,
 	markdownFormattingSection,
 } from "./sections"
-import { TOOL_PROTOCOL } from "@roo-code/types"
 
 // Helper function to get prompt component, filtering out empty objects
 export function getPromptComponent(
@@ -97,28 +96,6 @@ async function generatePrompt(
 				)
 			: Promise.resolve(""),
 	])
-
-	// Build tools catalog section only for XML protocol
-	const toolsCatalog = isNativeProtocol(effectiveProtocol)
-		? ""
-		: `\n\n${getToolDescriptionsForMode(
-				mode,
-				cwd,
-				supportsComputerUse,
-				codeIndexManager,
-				effectiveDiffStrategy,
-				browserViewportSize,
-				shouldIncludeMcp ? mcpHub : undefined,
-				customModeConfigs,
-				experiments,
-				partialReadsEnabled,
-				settings,
-				enableMcpServerCreation,
-				modelId,
-			)}`
-
-	// Determine the effective protocol (defaults to 'xml')
-	const effectiveProtocol = getEffectiveProtocol(settings)
 
 	// Build tools catalog section only for XML protocol
 	const toolsCatalog = isNativeProtocol(effectiveProtocol)

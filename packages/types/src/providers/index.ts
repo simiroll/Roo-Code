@@ -105,8 +105,6 @@ export function getProviderDefaultModelId(
 			return vertexDefaultModelId
 		case "gemini":
 			return geminiDefaultModelId
-		case "gemini-cli":
-			return geminiCliDefaultModelId
 		case "deepseek":
 			return deepSeekDefaultModelId
 		case "doubao":
